@@ -9,7 +9,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    lazy var game = ConcentrationGame(numberOfPairsOfCard: (buttonCollection.count + 1) / 2)
+    lazy var game = ConcentrationGame(numberOfPairsOfCard: numberOfPairsOfCard)
+    
+    var numberOfPairsOfCard: Int {
+        return (buttonCollection.count + 1) / 2
+    }
     
     var emojiCollection = ["🦊","🐰","🐶","🦁","🐨","🐸","🦉","🦇","🐺","🐝","🦖","🐿","🐓","🐂","🐫","🐋","🐌"]
     var emojiDictionary = [Int: String]()
