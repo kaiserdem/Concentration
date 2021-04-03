@@ -20,8 +20,17 @@ class ViewController: UIViewController {
     
     private(set) var touches = 0 {
         didSet {
-            touchLabel.text = "Touches: \(touches)"
+            updateTouches()
         }
+    }
+    
+    private func updateTouches() {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .strokeWidth : 5.0,
+            .strokeColor : UIColor.red
+        ]
+        let attributedString = NSAttributedString(string: "Touches: \(touches)", attributes: attributes)
+        touchLabel.attributedText = attributedString
     }
     
     private func emojiIdentifier(for card: Card) -> String {
@@ -46,7 +55,11 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBOutlet private weak var touchLabel: UILabel!
+    @IBOutlet private weak var touchLabel: UILabel! {
+        didSet {
+            updateTouches()
+        }
+    }
     @IBOutlet private var buttonCollection: [UIButton]!
     @IBAction private func buttonAction(_ sender: UIButton) {
         touches += 1
